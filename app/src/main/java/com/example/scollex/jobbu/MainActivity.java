@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView mBottomNav = findViewById(R.id.bottom_nav);
         mBottomNav.setOnNavigationItemSelectedListener(navListener);
 
+        //to Open the homepage fragment when apps start
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment()).commit();
     }
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Fragment selectedFragment = null;
 
+                    //selecting different icon at the bottom bar will navigate to different fragment
                     switch(menuItem.getItemId()){
                         case R.id.nav_home:
                             selectedFragment = new HomeFragment();
