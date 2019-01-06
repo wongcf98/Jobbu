@@ -9,25 +9,50 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FirebaseAuth firebaseAuth;
-    private SharedPreferences mPreferences;
-    private String sharedPrefile = "com.example.scollex.jobbu";
+    // Firebase instance variables
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+    private String mUsername;
+    private String mPhotoUrl;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Initialize Firebase Auth
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        if (mFirebaseUser == null) {
+            // Not signed in, launch the Sign In activity
+            startActivity(new Intent(this, activity_login.class));
+            finish();
+            return;
+        } else {
+            mUsername = mFirebaseUser.getDisplayName();
+            if (mFirebaseUser.getPhotoUrl() != null) {
+                mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
+                CircleImageView profileImg = findViewById(R.id.profilePic);
+                TextView profileName = findViewById(R.id.profileName);
+                profileName.setText(mFirebaseUser.getDisplayName());
+            }
+        }
+    }
+
+    private void updateUI(FirebaseUser currentUser) {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPreferences = getSharedPreferences(sharedPrefile,MODE_PRIVATE);
-
-        first_time_check();
-
         setContentView(R.layout.activity_main);
-        firebaseAuth.getInstance();
-
         BottomNavigationView mBottomNav = findViewById(R.id.bottom_nav);
         mBottomNav.setOnNavigationItemSelectedListener(navListener);
 
@@ -35,18 +60,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment()).commit();
     }
-
-    private boolean first_time_check() {
-
-        String first = mPreferences.getString("first", null);
-        if((first == null)){
-            Intent i = new Intent(MainActivity.this, activity_login.class);
-            finish();
-            startActivity(i);
-        }
-        return false;
-    }
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -79,12 +92,7 @@ public class MainActivity extends AppCompatActivity {
             };
 
     public void logout(View view) {
-        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
-
-        preferencesEditor.putString("first",null);
-
-        preferencesEditor.apply();
-
-        first_time_check();
+        mFirebaseAuth.signOut();
+        finish();
     }
 }

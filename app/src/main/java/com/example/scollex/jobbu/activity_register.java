@@ -68,6 +68,9 @@ public class activity_register extends AppCompatActivity {
                         }
                     });
             return;
+        }else{
+            Toast.makeText(this,"Please enter the same password",Toast.LENGTH_SHORT).show();
+
         }
 
     }

@@ -3,6 +3,7 @@ package com.example.scollex.jobbu;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -18,6 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class activity_login extends AppCompatActivity implements View.OnClickListener {
 
@@ -27,6 +29,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     EditText mEmailText;
     EditText mPasswordText;
 
+    private String TAG = ".activity_login";
     private SharedPreferences mPreferences;
     private String sharedPrefile = "com.example.scollex.jobbu";
 
@@ -67,6 +70,11 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     private void loginUser(){
         String email = mEmailText.getText().toString().trim();
         String password = mPasswordText.getText().toString().trim();
@@ -87,15 +95,29 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         mRegisterButton.setVisibility(View.INVISIBLE);
         mLoginButton.setVisibility(View.INVISIBLE);
 
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                            //updateUI(null);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(activity_login.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            //updateUI(null);
+                        }
 
-        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+                        // ...
+                    }
+                });
 
-        preferencesEditor.putString("first",email);
 
-        preferencesEditor.apply();
 
-        Intent intent = new Intent(activity_login.this,MainActivity.class);
 
-        startActivity(intent);
     }
 }
