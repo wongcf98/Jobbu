@@ -1,10 +1,14 @@
 package com.example.scollex.jobbu;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -23,13 +27,18 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     EditText mEmailText;
     EditText mPasswordText;
 
+    private SharedPreferences mPreferences;
+    private String sharedPrefile = "com.example.scollex.jobbu";
+
     private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(this.getClass().toString(),"onCreate(): ");
         setContentView(R.layout.activity_login);
 
+        mPreferences = getSharedPreferences(sharedPrefile,MODE_PRIVATE);
         mLoginProgressBar = (ProgressBar)findViewById(R.id.login_progressBar);
         mLoginButton = (Button) findViewById(R.id.login_button);
         mRegisterButton = (Button) findViewById(R.id.register_buton);
@@ -39,20 +48,22 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         mLoginButton.setOnClickListener(this);
         mRegisterButton.setOnClickListener(this);
         mLoginProgressBar.setVisibility(View.INVISIBLE);
+
         firebaseAuth.getInstance();
+
     }
 
     @Override
     public void onClick(View view){
         if(view == mRegisterButton){
             //will initiate login process
+            Intent intent = new Intent(this, activity_register.class);
 
+            startActivity(intent);
         }
         if(view == mLoginButton){
             loginUser();
-            mLoginProgressBar.setVisibility(View.VISIBLE);
-            mRegisterButton.setVisibility(View.INVISIBLE);
-            mLoginButton.setVisibility(View.INVISIBLE);
+
         }
     }
 
@@ -72,17 +83,19 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
             return;
         }
-        firebaseAuth.createUserWithEmailAndPassword(email,password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(activity_login.this, "Register Successful", Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                            Toast.makeText(activity_login.this, "Register Error. Please try again", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+        mLoginProgressBar.setVisibility(View.VISIBLE);
+        mRegisterButton.setVisibility(View.INVISIBLE);
+        mLoginButton.setVisibility(View.INVISIBLE);
+
+
+        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+
+        preferencesEditor.putString("first",email);
+
+        preferencesEditor.apply();
+
+        Intent intent = new Intent(activity_login.this,MainActivity.class);
+
+        startActivity(intent);
     }
 }
