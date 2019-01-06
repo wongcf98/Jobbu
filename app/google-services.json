@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "907649550748",
+    "firebase_url": "https://jobbu-3f0ba.firebaseio.com",
+    "project_id": "jobbu-3f0ba",
+    "storage_bucket": "jobbu-3f0ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907649550748:android:e898c1ae224d298e",
+        "android_client_info": {
+          "package_name": "com.example.scollex.jobbu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "907649550748-dtdt3iam5uiar0mgj3sipurq45euc9om.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.scollex.jobbu",
+            "certificate_hash": "292bd3472c617af523b837d3500c4febb915ec14"
+          }
+        },
+        {
+          "client_id": "907649550748-u5u0di1kien75mhhlrm29t4ue7guoqia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQdrlt7cnWScFdicd0Ad84NN0AkUIY_us"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907649550748-u5u0di1kien75mhhlrm29t4ue7guoqia.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
