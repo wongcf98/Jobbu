@@ -1,5 +1,6 @@
 package com.example.scollex.jobbu;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class ProfileFragment extends Fragment {
+
+    private SharedPreferences mPreferences;
+    private String sharedPrefile = "com.example.scollex.jobbu";
 
     @Nullable
     @Override
