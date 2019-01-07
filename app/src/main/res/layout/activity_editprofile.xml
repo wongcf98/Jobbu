@@ -62,12 +62,12 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="60dp"
-                                android:text="Upload Photo"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
+                                android:layout_marginBottom="20dp"
                                 android:background="@drawable/button_element"
+                                android:text="Upload Photo"
                                 android:textColor="#ffffff"
-                                android:layout_marginBottom="20dp"/>
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -93,8 +93,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                >
+                                android:layout_height="wrap_content">
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -103,15 +102,16 @@
                                     android:layout_marginTop="20dp"
                                     android:text="Birthday :"
                                     android:textAlignment="center"
-                                    android:textSize="17sp"
-                                    android:textColor="#000000"/>
+                                    android:textColor="#000000"
+                                    android:textSize="17sp" />
 
                                 <EditText
                                     android:id="@+id/editBirthday"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="10dp"
                                     android:hint="01-01-1990"
-                                    android:layout_marginLeft="10dp"/>
+                                    android:inputType="date" />
 
 
                             </LinearLayout>
@@ -133,8 +133,7 @@
                                     android:id="@+id/spinnerJobType"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp">
-                                </Spinner>
+                                    android:layout_marginLeft="10dp"></Spinner>
 
 
                             </LinearLayout>
@@ -177,11 +176,12 @@
 
                                 <EditText
                                     android:id="@+id/editBio"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:hint="Write about yourself..."
+                                    android:layout_width="221dp"
+                                    android:layout_height="194dp"
                                     android:layout_gravity="center_vertical"
-                                    android:layout_marginLeft="10dp"/>
+                                    android:layout_marginLeft="10dp"
+                                    android:hint="Write about yourself..."
+                                    android:singleLine="false" />
 
                             </LinearLayout>
 
@@ -189,13 +189,7 @@
 
                     </android.support.v7.widget.CardView>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="30dp">
+
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -251,7 +245,7 @@
                                 android:layout_marginLeft="10dp"/>
 
                         </LinearLayout>
-                    </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -352,7 +346,7 @@
                         android:weightSum="2">
 
                         <Button
-                            android:id="@+id/btnEdit"
+                            android:id="@+id/editprofile_btnEdit"
                             android:layout_width="125dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -364,7 +358,7 @@
                             android:text="Edit"/>
 
                         <Button
-                            android:id="@+id/btnCancel"
+                            android:id="@+id/editprofile_btnCancel"
                             android:layout_width="125dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
