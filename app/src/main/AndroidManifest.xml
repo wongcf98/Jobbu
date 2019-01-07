@@ -18,11 +18,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity_login"
-            android:theme="@style/LoginTheme"></activity>
-        <activity android:name=".activity_register"
-            android:theme="@style/LoginTheme"
-            android:label="@string/register_title"></activity>
+        <activity
+            android:name=".activity_login"
+            android:theme="@style/LoginTheme" />
+        <activity
+            android:name=".activity_register"
+            android:label="@string/register_title"
+            android:theme="@style/LoginTheme" />
+        <activity
+            android:name=".activity_editprofile"
+            android:label="@string/edit_title"
+            android:theme="@style/LoginTheme"/>
     </application>
 
 </manifest>

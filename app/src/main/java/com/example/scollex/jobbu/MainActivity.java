@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         logoutButton = findViewById(R.id.profile_logoutBtn);
 
-
         if (mFirebaseUser == null) {
             // Not signed in, launch the Sign In activity
             finish();
@@ -102,6 +101,11 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAuth.signOut();
         finish();
         startActivity(new Intent(this,activity_login.class));
+    }
+
+    public void edit(View v){
+        finish();
+        startActivity(new Intent(this,activity_editprofile.class));
     }
 
 }
