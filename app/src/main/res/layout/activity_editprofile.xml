@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite">
@@ -55,46 +56,45 @@
                             android:orientation="vertical"
                             android:background="@drawable/element_outline">
 
-                            <TextView
-                                android:id="@+id/profileName"
+                            <Button
+                                android:id="@+id/btnUploadPhoto"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="60dp"
-                                android:text="Harold"
-                                android:textSize="30sp"
+                                android:text="Upload Photo"
+                                android:textSize="20sp"
                                 android:textStyle="bold"
-                                android:textColor="#000000"
+                                android:background="@drawable/button_element"
+                                android:textColor="#ffffff"
                                 android:layout_marginBottom="20dp"/>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:text="Gender : "
-        android:textColor="#000000"
-        android:textSize="17sp" />
-
-    <TextView
-        android:id="@+id/textGender"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:textSize="15sp"
-        android:text="Male"
-        android:layout_marginLeft="5dp"
-        android:textColor="#000000"
-        android:textStyle="bold"/>
-
-</LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="20dp"
+                                    android:text="Gender : "
+                                    android:textColor="#000000"
+                                    android:textSize="17sp" />
+
+                                <Spinner
+                                    android:id="@+id/spinnerGender"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp">
+                                </Spinner>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                >
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -106,16 +106,14 @@
                                     android:textSize="17sp"
                                     android:textColor="#000000"/>
 
-                                <TextView
-                                    android:id="@+id/textBirthday"
+                                <EditText
+                                    android:id="@+id/editBirthday"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center_horizontal"
-                                    android:textSize="15sp"
-                                    android:textColor="#000000"
-                                    android:text="12-10-1998"
-                                    android:layout_marginLeft="5dp"
-                                    android:textStyle="bold"/>
+                                    android:layout_height="wrap_content"
+                                    android:hint="01-01-1990"
+                                    android:layout_marginLeft="10dp"/>
+
+
                             </LinearLayout>
 
                             <LinearLayout
@@ -127,48 +125,19 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
                                     android:layout_marginTop="20dp"
-                                    android:text="Age : "
+                                    android:text="Job Type : "
                                     android:textSize="17sp"
                                     android:textColor="#000000"/>
-                                <TextView
-                                    android:id="@+id/textAge"
+
+                                <Spinner
+                                    android:id="@+id/spinnerJobType"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center_horizontal"
-                                    android:textSize="15sp"
-                                    android:text="21"
-                                    android:textColor="#000000"
-                                    android:layout_marginLeft="5dp"
-                                    android:textStyle="bold"/>
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp">
+                                </Spinner>
 
 
                             </LinearLayout>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:text="Job Type : "
-        android:textSize="17sp"
-        android:textColor="#000000"/>
-
-    <TextView
-        android:id="@+id/textJobType"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:textSize="15sp"
-        android:textColor="#000000"
-        android:text="Full Time"
-        android:layout_marginLeft="5dp"
-        android:textStyle="bold"/>
-
-</LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -183,16 +152,13 @@
                                     android:textSize="17sp"
                                     android:textColor="#000000"/>
 
-                                <TextView
-                                    android:id="@+id/textExSalary"
+                                <EditText
+                                    android:id="@+id/editExSalary"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center_horizontal"
-                                    android:textSize="15sp"
-                                    android:textColor="#000000"
-                                    android:text="3500"
-                                    android:layout_marginLeft="5dp"
-                                    android:textStyle="bold"/>
+                                    android:layout_height="wrap_content"
+                                    android:hint="2000"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginLeft="10dp"/>
 
                             </LinearLayout>
 
@@ -209,16 +175,13 @@
                                     android:textSize="17sp"
                                     android:textColor="#000000"/>
 
-                                <TextView
-                                    android:id="@+id/textBio"
+                                <EditText
+                                    android:id="@+id/editBio"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center_horizontal"
-                                    android:textSize="15sp"
-                                    android:textColor="#000000"
-                                    android:text="I am the best student in class. "
-                                    android:layout_marginLeft="5dp"
-                                    android:textStyle="bold"/>
+                                    android:layout_height="wrap_content"
+                                    android:hint="Write about yourself..."
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginLeft="10dp"/>
 
                             </LinearLayout>
 
@@ -256,22 +219,36 @@
                                 android:id="@+id/textLevel"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
+
                                 android:textColor="#000000"
-                                android:text="Degree"
+                                android:text="Level"
                                 android:textSize="20sp"/>
 
-                            <TextView
-                                android:id="@+id/textProfession"
+                            <Spinner
+                                android:id="@+id/spinnerLevel"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
+                                android:layout_marginLeft="10dp"></Spinner>
+
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:textColor="#000000"
-                                android:text="Software Systems Development"
+                                android:text="Profession"
                                 android:textAlignment="center"
                                 android:textSize="20sp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="30dp"
                                 android:layout_marginBottom="15dp"/>
+
+                            <EditText
+                                android:id="@+id/editProfession"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:hint="Software Systems Development"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="10dp"/>
 
                         </LinearLayout>
                     </LinearLayout>
@@ -303,15 +280,20 @@
                                 android:layout_marginBottom="10dp"/>
 
                             <TextView
-                                android:id="@+id/textSkill"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
                                 android:textAlignment="center"
                                 android:textSize="20sp"
-                                android:text="Computing and Information Technology"
+                                android:text="Skill"
                                 android:textColor="#000000"
                                 android:layout_marginBottom="15dp"/>
+
+                            <EditText
+                                android:id="@+id/editSkill"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:hint="Computing and Information Technology"
+                                android:textAlignment="center"/>
 
                         </LinearLayout>
                     </LinearLayout>
@@ -343,15 +325,20 @@
                                 android:textColor="#000000"/>
 
                             <TextView
-                                android:id="@+id/textLanguage"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
                                 android:textSize="20sp"
                                 android:textAlignment="center"
-                                android:text="English"
+                                android:text="Language"
                                 android:textColor="#000000"
                                 android:layout_marginBottom="15dp"/>
+
+                            <EditText
+                                android:id="@+id/editLanguage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:hint="Chinese, English"
+                                android:textAlignment="center"/>
 
                         </LinearLayout>
                     </LinearLayout>
@@ -365,22 +352,19 @@
                         android:weightSum="2">
 
                         <Button
-                            android:onClick="edit"
-                            android:id="@+id/btnEditProfile"
+                            android:id="@+id/btnEdit"
                             android:layout_width="125dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_weight="1"
-                            android:text="Edit Profile"
                             android:textColor="#ffffff"
                             android:textStyle="bold"
                             android:background="@drawable/button_element"
-                            android:text="Edit Profile"/>
-
+                            android:text="Edit"/>
 
                         <Button
-                            android:id="@+id/profile_btnJobList"
+                            android:id="@+id/btnCancel"
                             android:layout_width="125dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -389,30 +373,7 @@
                             android:textColor="#ffffff"
                             android:textStyle="bold"
                             android:background="@drawable/button_element"
-                            android:text="Job Applied List"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="30dp"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <Button
-                            android:onClick="logout"
-                            android:id="@+id/profile_logoutBtn"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="105dp"
-                            android:layout_marginRight="105dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/button_element"
-                            android:text="Log Out"
-                            android:textColor="#ffffff"
-                            android:textStyle="bold"/>
+                            android:text="Cancel"/>
 
                     </LinearLayout>
 
