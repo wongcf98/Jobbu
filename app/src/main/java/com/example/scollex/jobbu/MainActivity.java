@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button logoutButton;
     private String mUsername;
     private String mPhotoUrl;
-
+    private View profile_topView;
     @Override
     protected void onStart() {
         super.onStart();
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         logoutButton = findViewById(R.id.profile_logoutBtn);
+
         if (mFirebaseUser == null) {
             // Not signed in, launch the Sign In activity
             finish();
@@ -105,6 +106,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(new Intent(this,activity_login.class));
     }
 
+
+    public void edit(View v){
+        finish();
+        startActivity(new Intent(this,activity_editprofile.class));
+    }
+  
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -116,4 +123,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
 }
