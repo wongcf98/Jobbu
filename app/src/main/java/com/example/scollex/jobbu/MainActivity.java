@@ -1,12 +1,12 @@
 package com.example.scollex.jobbu;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +14,11 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -22,49 +27,70 @@ public class MainActivity extends AppCompatActivity {
     // Firebase instance variables
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
+    private FirebaseUser mUser;
+
+    private TextView profileName;
     private Button logoutButton;
     private String mUsername;
     private String mPhotoUrl;
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+        BottomNavigationView mBottomNav = findViewById(R.id.bottom_nav);
+        mBottomNav.setOnNavigationItemSelectedListener(navListener);
+
         // Initialize Firebase Auth
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        logoutButton = findViewById(R.id.profile_logoutBtn);
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference();
+
         if (mFirebaseUser == null) {
             // Not signed in, launch the Sign In activity
             finish();
             startActivity(new Intent(this, activity_login.class));
             return;
-        } else {
-            mUsername = mFirebaseUser.getDisplayName();
-
-            if (mFirebaseUser.getPhotoUrl() != null) {
-                updateUI(mFirebaseUser);
-            }
         }
-
-    }
-
-    private void updateUI(FirebaseUser currentUser) {
-        mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
-        CircleImageView profileImg = findViewById(R.id.profilePic);
-        TextView profileName = findViewById(R.id.profileName);
-        profileName.setText(mFirebaseUser.getDisplayName());
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        BottomNavigationView mBottomNav = findViewById(R.id.bottom_nav);
-        mBottomNav.setOnNavigationItemSelectedListener(navListener);
 
         //to Open the homepage fragment when apps start
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment()).commit();
+
+        databaseReference.child("User");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = new User();
+                for(DataSnapshot ds: dataSnapshot.getChildren()){
+                    user.setAge(ds.child(mFirebaseUser.getUid()).getValue(User.class).getAge());
+                    user.setName(ds.child(mFirebaseUser.getUid()).getValue(User.class).getName());
+                }
+                Log.w(".MainActivity: ", "show data: Name: "+ user.getName());
+                Log.w(".MainActivity: ", "show data: Age: "+ user.getAge());
+                updateUI(user);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w(".MainActivity: ", "Failed to read value.", databaseError.toException());
+            }
+        });
+
+    }
+
+    private void updateUI(User user) {
+        profileName = findViewById(R.id.profileName);
+        if(profileName!=null) {
+            profileName.setText(user.getName());
+        }
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
