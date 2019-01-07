@@ -1,5 +1,6 @@
 package com.example.scollex.jobbu;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class User {
@@ -16,7 +17,7 @@ public class User {
     public User() {
     }
 
-    public User(String userID,String name, int age, String bio, String gender, Calendar birthday, Education education,
+    public User(String userID,String Name, int Age, String bio, String gender, Calendar birthday, Education education,
                 int expectedSalary, String jobType, String language, String skill) {
         this.userID = userID;
         this.Name = Name;
@@ -51,6 +52,12 @@ public class User {
         return birthday;
     }
 
+    public String getBirthdate(){
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+
+        return format.format(birthday.getTime());
+    }
+
     public Education getEducation() {
         return education;
     }
@@ -80,7 +87,7 @@ public class User {
     }
 
     public void setName(String name) {
-        this.Name = name;
+        this.Name = Name;
     }
 
     public void setAge(int age) {
@@ -119,11 +126,16 @@ public class User {
         this.skill = skill;
     }
 
-    private class Education {
+    public static class Education {
         String level;
-        Education.Period period;
+        Period period;
         String Professions;
         String where;
+
+        public Education(String level,String professions) {
+            this.level = level;
+            this.Professions = professions;
+        }
 
         public Education(String level, Education.Period period, String professions, String where) {
             this.level = level;

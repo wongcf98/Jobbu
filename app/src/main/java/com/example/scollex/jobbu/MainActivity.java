@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String mUsername;
     private String mPhotoUrl;
     private View profile_topView;
+
+    final static User user = new User();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,21 +67,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //to Open the homepage fragment when apps start
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new SearchFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new FavoritesFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new ProfileFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment()).commit();
 
         databaseReference.child("User");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.child("User").child(mFirebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = new User();
-                for(DataSnapshot ds: dataSnapshot.getChildren()){
-                    user.setAge(ds.child(mFirebaseUser.getUid()).getValue(User.class).getAge());
-                    user.setName(ds.child(mFirebaseUser.getUid()).getValue(User.class).getName());
+
+                if(dataSnapshot.child("Name").getValue() != null) {
+                    user.setName(dataSnapshot.child("Name").getValue().toString());
+                    user.setAge(Integer.parseInt(dataSnapshot.child("Age").getValue().toString()));
+
+                    Log.w(".MainActivity: ", "show data: Name: " + user.getName());
+                    Log.w(".MainActivity: ", "show data: Age: " + user.getAge());
+
                 }
-                Log.w(".MainActivity: ", "show data: Name: "+ user.getName());
-                Log.w(".MainActivity: ", "show data: Age: "+ user.getAge());
-                updateUI(user);
             }
 
             @Override

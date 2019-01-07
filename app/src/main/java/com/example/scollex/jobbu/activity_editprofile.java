@@ -3,10 +3,12 @@ package com.example.scollex.jobbu;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -15,10 +17,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
+
 public class activity_editprofile extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
     private Button editBtn, cancelBtn;
     private Spinner gender,level,jobType;
+    private EditText birthday,bio,profession,skill,language,salary;
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -48,6 +53,12 @@ public class activity_editprofile extends AppCompatActivity implements AdapterVi
         gender = findViewById(R.id.spinnerGender);
         level = findViewById(R.id.spinnerLevel);
         jobType = findViewById(R.id.spinnerJobType);
+        birthday = findViewById(R.id.editBirthday);
+        bio = findViewById(R.id.editBio);
+        profession = findViewById(R.id.editProfession);
+        skill = findViewById(R.id.editSkill);
+        language = findViewById(R.id.editLanguage);
+        salary = findViewById(R.id.editExSalary);
 
         editBtn.setOnClickListener(this);
         cancelBtn.setOnClickListener(this);
@@ -102,10 +113,42 @@ public class activity_editprofile extends AppCompatActivity implements AdapterVi
             startActivity(new Intent(this,MainActivity.class));
         }
         if(v == editBtn){
+            if(TextUtils.isEmpty(birthday.getText())){
+                Toast.makeText(this,"Please fill in all the fields ", Toast.LENGTH_SHORT).show();
+                return;
+            }if(TextUtils.isEmpty(salary.getText())){
+                Toast.makeText(this,"Please fill in all the fields ", Toast.LENGTH_SHORT).show();
+                return;
+            }if(TextUtils.isEmpty(profession.getText())){
+                Toast.makeText(this,"Please fill in all the fields ", Toast.LENGTH_SHORT).show();
+                return;
+            }if(TextUtils.isEmpty(language.getText())){
+                Toast.makeText(this,"Please fill in all the fields ", Toast.LENGTH_SHORT).show();
+                return;
+            }if(TextUtils.isEmpty(bio.getText())){
+                Toast.makeText(this,"Please fill in all the fields ", Toast.LENGTH_SHORT).show();
+                return;
+            }if(TextUtils.isEmpty(skill.getText())){
+                Toast.makeText(this,"Please fill in all the fields ", Toast.LENGTH_SHORT).show();
+                return;
+            }
             saveIntoFireBase();
         }
     }
 
     private void saveIntoFireBase() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String userName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+
+        User user = new User(userID, userName,21,"I am a good boy","Male",Calendar.getInstance(), new User.Education("Degree","RSD"),
+                3500, "Full Time","Chinese","Programming");
+
+        reference.child("User").child(userID).setValue(user);
+
+        Toast.makeText(this,"Profile Updated",Toast.LENGTH_SHORT).show();
+
+        finish();
+        startActivity(new Intent(this, MainActivity.class));
     }
 }
