@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Button logoutButton;
     private String mUsername;
     private String mPhotoUrl;
-
+    private View profile_topView;
     @Override
     protected void onStart() {
         super.onStart();
@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         logoutButton = findViewById(R.id.profile_logoutBtn);
+
+
         if (mFirebaseUser == null) {
             // Not signed in, launch the Sign In activity
             finish();
