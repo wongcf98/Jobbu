@@ -34,6 +34,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     private String sharedPrefile = "com.example.scollex.jobbu";
 
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser mFirebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,14 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         mLoginProgressBar.setVisibility(View.INVISIBLE);
 
         firebaseAuth = firebaseAuth.getInstance();
+        mFirebaseUser = firebaseAuth.getCurrentUser();
+
+        if (mFirebaseUser != null) {
+            // Signed in, launch the Sign In activity
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+            return;
+        }
 
         mLoginProgressBar.setVisibility(View.INVISIBLE);
         mRegisterButton.setVisibility(View.VISIBLE);
