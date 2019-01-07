@@ -8,7 +8,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="210dp"
-        android:background="@color/colorPrimary"/>
+        android:background="#000000" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -172,12 +172,33 @@
                             android:text="Edit Profile"/>
 
                         <Button
-                            android:onClick="logout"
-                            android:id="@+id/profile_logoutBtn"
+                            android:id="@+id/btnJobList"
                             android:layout_width="125dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/element_outline"
+                            android:text="Job Applied List"
+                            android:textColor="#000000" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="30dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <Button
+                            android:onClick="logout"
+                            android:id="@+id/profile_logoutBtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="105dp"
+                            android:layout_marginRight="105dp"
                             android:layout_weight="1"
                             android:background="@drawable/element_outline"
                             android:text="Log Out"

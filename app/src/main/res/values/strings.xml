@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Jobbu</string>
+    <string name="register_title">Register</string>
+    <string name="profile_title">Profile</string>
 </resources>
