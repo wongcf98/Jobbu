@@ -1,5 +1,6 @@
 package com.example.scollex.jobbu;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,12 +13,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.w3c.dom.Text;
 
 public class activity_register extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser mFirebaseUser;
     private EditText mEmailText;
     private EditText mPasswordText;
     private EditText mConfirmPass;
@@ -27,6 +30,7 @@ public class activity_register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         firebaseAuth = firebaseAuth.getInstance();
+        mFirebaseUser = firebaseAuth.getCurrentUser();
 
         mEmailText = findViewById(R.id.register_email);
         mPasswordText = findViewById(R.id.register_password);
@@ -61,6 +65,7 @@ public class activity_register extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 Toast.makeText(activity_register.this, "Register Successful", Toast.LENGTH_SHORT).show();
+                                updateUI();
                             }
                             else{
                                 Toast.makeText(activity_register.this, "Register Error. Please try again", Toast.LENGTH_SHORT).show();
@@ -73,6 +78,11 @@ public class activity_register extends AppCompatActivity {
 
         }
 
+    }
+
+    private void updateUI() {
+        finish();
+        startActivity(new Intent(this,MainActivity.class));
     }
 }
 
