@@ -52,7 +52,11 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         mRegisterButton.setOnClickListener(this);
         mLoginProgressBar.setVisibility(View.INVISIBLE);
 
-        firebaseAuth.getInstance();
+        firebaseAuth = firebaseAuth.getInstance();
+
+        mLoginProgressBar.setVisibility(View.INVISIBLE);
+        mRegisterButton.setVisibility(View.VISIBLE);
+        mLoginButton.setVisibility(View.VISIBLE);
 
     }
 
@@ -73,6 +77,11 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void updateUI(){
+        finish();
+        startActivity(new Intent(this,MainActivity.class));
     }
 
     private void loginUser(){
@@ -103,7 +112,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = firebaseAuth.getCurrentUser();
-                            //updateUI(null);
+                            updateUI();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());

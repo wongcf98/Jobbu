@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     // Firebase instance variables
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
+    private Button logoutButton;
     private String mUsername;
     private String mPhotoUrl;
 
@@ -30,23 +32,26 @@ public class MainActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        logoutButton = findViewById(R.id.profile_logoutBtn);
         if (mFirebaseUser == null) {
             // Not signed in, launch the Sign In activity
-            startActivity(new Intent(this, activity_login.class));
             finish();
+            startActivity(new Intent(this, activity_login.class));
             return;
         } else {
             mUsername = mFirebaseUser.getDisplayName();
             if (mFirebaseUser.getPhotoUrl() != null) {
-                mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
-                CircleImageView profileImg = findViewById(R.id.profilePic);
-                TextView profileName = findViewById(R.id.profileName);
-                profileName.setText(mFirebaseUser.getDisplayName());
+                updateUI(mFirebaseUser);
             }
         }
+
     }
 
     private void updateUI(FirebaseUser currentUser) {
+        mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
+        CircleImageView profileImg = findViewById(R.id.profilePic);
+        TextView profileName = findViewById(R.id.profileName);
+        profileName.setText(mFirebaseUser.getDisplayName());
     }
 
     @Override
@@ -91,8 +96,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
 
-    public void logout(View view) {
+    public void logout(View v) {
         mFirebaseAuth.signOut();
         finish();
+        startActivity(new Intent(this,activity_login.class));
     }
+
 }
