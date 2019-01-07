@@ -1,5 +1,6 @@
 package com.example.scollex.jobbu;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -61,6 +62,8 @@ public class activity_register extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 Toast.makeText(activity_register.this, "Register Successful", Toast.LENGTH_SHORT).show();
+                                finish();
+                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
                             }
                             else{
                                 Toast.makeText(activity_register.this, "Register Error. Please try again", Toast.LENGTH_SHORT).show();

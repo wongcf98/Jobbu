@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         } else {
             mUsername = mFirebaseUser.getDisplayName();
+
             if (mFirebaseUser.getPhotoUrl() != null) {
                 updateUI(mFirebaseUser);
             }

@@ -54,9 +54,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
         firebaseAuth = firebaseAuth.getInstance();
 
-        mLoginProgressBar.setVisibility(View.INVISIBLE);
-        mRegisterButton.setVisibility(View.VISIBLE);
-        mLoginButton.setVisibility(View.VISIBLE);
+
 
     }
 
@@ -80,14 +78,17 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     }
 
     public void updateUI(){
-        finish();
-        startActivity(new Intent(this,MainActivity.class));
+        mLoginProgressBar.setVisibility(View.INVISIBLE);
+        mRegisterButton.setVisibility(View.VISIBLE);
+        mLoginButton.setVisibility(View.VISIBLE);
+
+        //finish();
+        //startActivity(new Intent(this,MainActivity.class));
     }
 
     private void loginUser(){
         String email = mEmailText.getText().toString().trim();
         String password = mPasswordText.getText().toString().trim();
-
         if(TextUtils.isEmpty(email)){
             //email is empty
             Toast.makeText(this,"Please enter a email",Toast.LENGTH_SHORT).show();
@@ -113,12 +114,14 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             updateUI();
+                            finish();
+                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(activity_login.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
+                            updateUI();
                         }
 
                         // ...
