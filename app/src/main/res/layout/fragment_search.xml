@@ -2,11 +2,112 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#ffffff">
 
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search" />
+        android:layout_margin="10dp"
+        android:background="@drawable/element_outline"
+        android:layout_gravity="center_horizontal"
+        >
+
+    <EditText
+        android:id="@+id/searchEditText"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Job Title..."
+        android:inputType="text" />
+
+        <ImageButton
+            android:id="@+id/searchbtn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/search"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_margin="10dp">
+
+
+
+        <ToggleButton
+            android:id="@+id/parttimebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="#FFFFFF"
+            android:textColor="#000000"
+            android:textOff="Part Time"
+            android:textOn="Part Time"
+            android:textSize="13sp"
+            />
+
+        <ToggleButton
+            android:id="@+id/fulltimebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="#FFFFFF"
+            android:textColor="#000000"
+            android:textOff="Full Time"
+            android:textOn="Full Time"
+            android:textSize="13sp"
+            />
+
+        <Spinner
+            android:id="@+id/state"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></Spinner>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:background="@drawable/element_outline"
+        android:layout_margin="10dp">
+
+        <EditText
+            android:id="@+id/minsal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:inputType="number"
+            android:hint="Min Salary(RM)"
+            android:textSize="10dp"
+            android:textAlignment="center"
+            />
+
+        <EditText
+            android:id="@+id/maxsal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:inputType="number"
+            android:hint="Max Salary(RM)"
+            android:textAlignment="center"
+            android:textSize="10dp"
+            />
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/searchRecycleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp" />
 </LinearLayout>
