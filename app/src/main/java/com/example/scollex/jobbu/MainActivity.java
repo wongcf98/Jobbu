@@ -11,13 +11,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     // Firebase instance variables
     private FirebaseAuth mFirebaseAuth;
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 new HomeFragment()).commit();
     }
 
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -103,4 +105,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this,activity_login.class));
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnApply:
+                Toast.makeText(this, "Applied Successfully ",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btnFav:
+                Toast.makeText(this, "Favourite Added ",Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
 }
