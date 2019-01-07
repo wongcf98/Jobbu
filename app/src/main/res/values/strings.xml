@@ -2,6 +2,9 @@
     <string name="app_name">Jobbu</string>
     <string name="register_title">Register</string>
     <string name="profile_title">Profile</string>
+
+    <string name="profile_name" />
+
     <string name="edit_title">Edit Profile</string>
 
     <string-array name="Gender">
@@ -18,5 +21,6 @@
         <item>Degree</item>
         <item>Diploma</item>
     </string-array>
+
 
 </resources>

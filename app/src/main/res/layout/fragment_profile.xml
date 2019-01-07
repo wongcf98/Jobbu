@@ -369,16 +369,18 @@
                             android:id="@+id/btnEditProfile"
                             android:layout_width="125dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:text="Edit Profile"
                             android:textColor="#ffffff"
                             android:textStyle="bold"
                             android:background="@drawable/button_element"
                             android:text="Edit Profile"/>
 
+
                         <Button
-                            android:id="@+id/btnJobList"
+                            android:id="@+id/profile_btnJobList"
                             android:layout_width="125dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
