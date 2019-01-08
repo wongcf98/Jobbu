@@ -1,5 +1,7 @@
 package com.example.scollex.jobbu;
 
+import android.graphics.Bitmap;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -13,12 +15,13 @@ public class User {
     private String jobType;
     private String language;
     private String skill;
+    private Bitmap userPic;
 
     public User() {
     }
 
     public User(String userID,String Name, int Age, String bio, String gender, Calendar birthday, Education education,
-                int expectedSalary, String jobType, String language, String skill) {
+                int expectedSalary, String jobType, String language, String skill, Bitmap userPic) {
         this.userID = userID;
         this.Name = Name;
         this.Age = Age;
@@ -30,6 +33,15 @@ public class User {
         this.jobType = jobType;
         this.language = language;
         this.skill = skill;
+        this.userPic = userPic;
+    }
+
+    public Bitmap getUserPic() {
+        return userPic;
+    }
+
+    public void setUserPic(Bitmap userPic) {
+        this.userPic = userPic;
     }
 
     public String getUserID() {
@@ -86,12 +98,12 @@ public class User {
         this.userID = userID;
     }
 
-    public void setName(String name) {
+    public void setName(String Name) {
         this.Name = Name;
     }
 
-    public void setAge(int age) {
-        this.Age = age;
+    public void setAge(int Age) {
+        this.Age = Age;
     }
 
     public void setGender(String gender) {

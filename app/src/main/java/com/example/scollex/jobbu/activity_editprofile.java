@@ -211,6 +211,7 @@ public class activity_editprofile extends AppCompatActivity implements AdapterVi
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
                 profilePic.setImageBitmap(bitmap);
+                user.setUserPic(bitmap);
             } catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

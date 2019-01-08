@@ -49,11 +49,7 @@ public class HomeFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //jobList = new ArrayList<>();
-        fillJobList();
-
-    }
-    private void fillJobList() {
+        jobList = new ArrayList<>();
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference();
 
@@ -66,8 +62,6 @@ public class HomeFragment extends Fragment {
                     Log.w(".HomeFragment: ", "data: " + job.getJobName());
                     jobList.add(job);
                 }
-
-
             }
 
             @Override
@@ -75,6 +69,7 @@ public class HomeFragment extends Fragment {
                 Log.w(".HomeFragment: ", "Failed to read value.", databaseError.toException());
             }
         });
+
     }
 
     /*@Override

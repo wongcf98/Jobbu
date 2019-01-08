@@ -84,6 +84,7 @@ public class activity_register extends AppCompatActivity {
                                 //create a user information into firebase
                                 createUserInformation(firebaseAuth.getCurrentUser().getUid());
 
+
                                 Toast.makeText(activity_register.this, "Register Successful", Toast.LENGTH_SHORT).show();
 
                                 finish();

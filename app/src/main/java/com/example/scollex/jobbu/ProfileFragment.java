@@ -19,6 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
+
 public class ProfileFragment extends Fragment {
 
     private TextView name,birthday,age,type,exSalary,bio,level,profession,skill,language,gender;
@@ -57,15 +59,26 @@ public class ProfileFragment extends Fragment {
                 User user = new User();
                 if(dataSnapshot.child("Name").getValue() != null) {
                     user.setName(dataSnapshot.child("Name").getValue().toString());
-                    user.setAge(Integer.parseInt(dataSnapshot.child("Age").getValue().toString()));
-
                     Log.w(".MainActivity: ", "show data: Name: " + user.getName());
-                    Log.w(".MainActivity: ", "show data: Age: " + user.getAge());
-
                     name.setText(user.getName());
-                    birthday.setText(user.getBirthdate());
+                }
+                if(dataSnapshot.child("Age").getValue() != null) {
+                    user.setAge(Integer.parseInt(dataSnapshot.child("Age").getValue().toString()));
+                    Log.w(".MainActivity: ", "show data: Age: " + user.getAge());
                     age.setText(user.getAge());
-                    type.setText(user.getJobType());
+                }
+                if(dataSnapshot.child("birthday").getValue() != null) {
+                    user.setBirthday(dataSnapshot.child("birthday").getValue(Calendar.class));
+                    Log.w(".MainActivity: ", "show data: birthday: " + user.getBirthdate());
+                    birthday.setText(user.getBirthdate());
+                }if(dataSnapshot.child("bio").getValue() != null) {
+                    user.setBio(dataSnapshot.child("bio").getValue().toString());
+                    Log.w(".MainActivity: ", "show data: bio: " + user.getBio());
+                    bio.setText(user.getBio());
+                }
+
+
+                type.setText(user.getJobType());
                     exSalary.setText(user.getExpectedSalary());
                     bio.setText(user.getBio());
                     level.setText(user.getEducation().level);
@@ -73,8 +86,10 @@ public class ProfileFragment extends Fragment {
                     skill.setText(user.getSkill());
                     language.setTag(user.getLanguage());
                     gender.setText(user.getGender());
-                }
+                    user = dataSnapshot.getValue(User.class);
+
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
