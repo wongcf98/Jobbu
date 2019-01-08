@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private View profile_topView;
 
     final static User user = new User();
+    public List<JobClass> jobList;
+    Bundle bundle = new Bundle();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,14 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this, activity_login.class));
             return;
         }
-
         //to Open the homepage fragment when apps start
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new SearchFragment()).commit();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new FavoritesFragment()).commit();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new ProfileFragment()).commit();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment()).commit();
 

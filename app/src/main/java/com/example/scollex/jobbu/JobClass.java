@@ -1,6 +1,8 @@
 package com.example.scollex.jobbu;
 
-public class JobClass {
+import java.io.Serializable;
+
+public class JobClass implements Serializable {
 
     private String JobName;
     private String Salary;
@@ -10,6 +12,9 @@ public class JobClass {
     private String jobState;
     private String JobLocation;
     private int jobThumbnail;
+
+    public JobClass() {
+    }
 
     public JobClass(String jobName, String Salary, String jobWorkingTime, String jobType, String jobDesc, String jobState, String jobLocation, int jobThumbnail) {
         JobName = jobName;
